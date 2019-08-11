@@ -47,6 +47,9 @@
                                 <rect key="frame" x="129.5" y="196" width="61" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="決定"/>
+                                <connections>
+                                    <action selector="okbutton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nCr-qR-zde"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,7 +81,6 @@
                     <connections>
                         <outlet property="answerTextField" destination="Tya-zl-Gc2" id="88N-37-Zto"/>
                         <outlet property="answerabel" destination="rBx-gi-E4G" id="d7X-4q-4DJ"/>
-                        <outlet property="okbutton" destination="x3I-ii-16O" id="fvm-IB-Du3"/>
                         <outlet property="rirekiText" destination="3gp-ED-kKk" id="KeJ-yu-PHs"/>
                     </connections>
                 </viewController>

@@ -16,15 +16,43 @@ class ViewController: UIViewController {
     //答えを入力するテキストフィールド
     @IBOutlet weak var answerTextField: UITextField!
     
-    //決定ボタン
-    @IBOutlet weak var okbutton: UIButton!
-    
-   //回答履歴が書かれるところ
+   
+    //回答履歴が書かれるところ
     @IBOutlet weak var rirekiText: UITextView!
     
     //正解の数値を定義
     var oknum: Int = 0
     
+    //回答回数のカウント
+    var count: Int = 1
+    
+    //ランダムに数を生成
+    var lannum: Int = Int.random(in: 1...100)
+    
+    
+    
+    //回答を確認する関数
+    func checkAnswer() {
+        if let answerNum = Int(answerTextField.text!) {
+            if answerNum >= 1 && answerNum <= 100 {
+            } else {
+                errorAlert()
+                answerTextField.text = ""
+                return
+                
+            }
+            answerabel.text = answerTextField.text
+            
+            answerTextField.text = ""
+            
+            if answerNum < lannum {
+                count += 1
+                
+            }
+                
+            
+        }
+    }
 
     
     
@@ -37,9 +65,27 @@ class ViewController: UIViewController {
     }
 
 
+    //決定ボタン
+    @IBAction func okbutton(_ sender: Any) {
+        
+        func errorAlert() {
+            // アラート作る
+            let alerterror = UIAlertController(title: "エラー", message: "「1〜100」の数字を入れてください。", preferredStyle: .alert)
+            // アラートのアクション（ボタン部分の定義）
+            let ok = UIAlertAction(title: "oK", style: .cancel, handler: nil)
+            // alerterrornに閉じるボタンつける
+            alerterror.addAction(ok)
+            // アラートの表示
+            present(alerterror, animated: true, completion: nil)
+            
+        }
+      //チェック呼び出し
+    checkAnswer()
+    }
+    
+    
+    
+    
+    
 }
-
-//ランダムに数を生成する
-var lanNum = [1 ... 100]
-var randomNum = lanNum.randomElement()
 
