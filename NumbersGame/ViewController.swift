@@ -33,50 +33,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //テキストビューに入力できないようにする
-        rirekiText.isUserInteractionEnabled = false
+
         
     }
     
     //決定ボタン
     @IBAction func okbutton(_ sender: Any) {
-        
-        func standertAlert(message: String) {
-            // アラートの作成
-            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-            // アラートのアクション（ボタン部分の定義）
-            let close = UIAlertAction(title: "閉じる", style: .cancel, handler: nil)
-            // 作成した alert に閉じるボタンを追加
-            alert.addAction(close)
-            // アラートを表示する
-            present(alert, animated: true, completion: nil)
-        }
-        
-        
-        
-        func errorAlert() {
-            // アラート作る
-            let alerterror = UIAlertController(title: "エラー", message: "「1〜100」の数字を入れてください。", preferredStyle: .alert)
-            // アラートのアクション（ボタン部分の定義）
-            let ok = UIAlertAction(title: "oK", style: .cancel, handler: nil)
-            // alerterrornに閉じるボタンつける
-            alerterror.addAction(ok)
-            // アラートの表示
-            present(alerterror, animated: true, completion: nil)
-            
-        }
-       
-    
-    
-    
-    
-    
-    
+        checkAnswer()
+    }
     
     //回答を確認する関数
     func checkAnswer() {
         if let answerNum = Int(answerTextField.text!) {
+            
             if answerNum >= 1 && answerNum <= 100 {
+                
+                
             } else {
                 errorAlert()
                 answerTextField.text = ""
@@ -111,21 +83,35 @@ class ViewController: UIViewController {
             } else {
                 errorAlert()
             }
+        } else {
+            errorAlert()
         }
-        
-        
-        
     }
-    
-    
-        //チェック呼び出し
-        checkAnswer()
-    
-    
-    }
-    
    
+    func standertAlert(message: String) {
+        // アラートの作成
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        // アラートのアクション（ボタン部分の定義）
+        let close = UIAlertAction(title: "閉じる", style: .cancel, handler: nil)
+        // 作成した alert に閉じるボタンを追加
+        alert.addAction(close)
+        // アラートを表示する
+        present(alert, animated: true, completion: nil)
+    }
     
+    
+    
+    func errorAlert() {
+        // アラート作る
+        let alerterror = UIAlertController(title: "エラー", message: "「1〜100」の数字を入れてください。", preferredStyle: .alert)
+        // アラートのアクション（ボタン部分の定義）
+        let ok = UIAlertAction(title: "oK", style: .cancel, handler: nil)
+        // alerterrornに閉じるボタンつける
+        alerterror.addAction(ok)
+        // アラートの表示
+        present(alerterror, animated: true, completion: nil)
+        
+    }
     
     
 }
