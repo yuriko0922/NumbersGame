@@ -16,25 +16,17 @@ class ViewController: UIViewController {
     //答えを入力するテキストフィールド
     @IBOutlet weak var answerTextField: UITextField!
     
-    
     //回答履歴が書かれるところ
     @IBOutlet weak var rirekiText: UITextView!
-    
-    //正解の数値を定義
-    var oknum: Int = 0
     
     //回答回数のカウント
     var count: Int = 0
     
     //ランダムに数を生成
-    var lannum: Int = Int.random(in: 1...100)
-    
+    var lanNum: Int = Int.random(in: 1...100)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
     }
     
     //決定ボタン
@@ -47,13 +39,10 @@ class ViewController: UIViewController {
         if let answerNum = Int(answerTextField.text!) {
             //１以上１００以下の時・・
             if answerNum >= 1 && answerNum <= 100 {
-                
-                
             } else {
                 errorAlert()
                 answerTextField.text = ""
                 return
-                
             }
             //入力したテキストをラベルに表示する処理
             answerabel.text = answerTextField.text
@@ -62,7 +51,7 @@ class ViewController: UIViewController {
             
             //ここから、入力した数字が高いか低いかの精査に入ります
             //回答が正解の数より低い場合
-            if answerNum < lannum {
+            if answerNum < lanNum {
                 //回答カウント１増やす
                 count += 1
                 //アラート呼んで、高いよっていうアラート表示させます
@@ -71,7 +60,7 @@ class ViewController: UIViewController {
                 rirekiText.text = rirekiText.text + "\n[\(count)回目]答えは\(answerNum)より高い値です。"
                 
                 //回答が正解の数より高い場合
-            } else if answerNum > lannum {
+            } else if answerNum > lanNum {
                 //回答カウント１増やす
                 count += 1
                 //アラート呼んで、低いよっていうアラート表示させます
@@ -80,20 +69,18 @@ class ViewController: UIViewController {
                 rirekiText.text = rirekiText.text + "\n[\(count)回目]答えは\(answerNum)より低い値です。"
                 
                 //回答が正解と一致した場合
-            } else if answerNum == lannum {
+            } else if answerNum == lanNum {
                 //回答カウント１増やす
                 count += 1
                 //アラート表示
                 standertAlert(message: "\(count)回目に正解しました！\n数字をリセットしました！")
                 //編集不可にしたエリアに正解履歴を残す
-                rirekiText.text = rirekiText.text + "[正解]答えは\(lannum)でした。\n"
-                
+                rirekiText.text = rirekiText.text + "\n[正解]答えは\(lanNum)でした。"
                 
                 //リセット
                 answerabel.text = "??"
                 count = 0
-                lannum = Int.random(in: 1...100)
-                
+                lanNum = Int.random(in: 1...100)
             } else {
                 //1~100以外の数字を入力した時にエラーアラート呼びだされる処理
                 errorAlert()
@@ -115,8 +102,6 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
     func errorAlert() {
         // エラーアラート
         let alerterror = UIAlertController(title: "エラー", message: "「1〜100」の数字を入れてください。", preferredStyle: .alert)
@@ -126,9 +111,6 @@ class ViewController: UIViewController {
         alerterror.addAction(ok)
         // アラートの表示
         present(alerterror, animated: true, completion: nil)
-        
     }
-    
-    
 }
 
